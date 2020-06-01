@@ -4,7 +4,9 @@
   "description": "The starting environment template for your react project",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "start": "npx webpack-dev-server --mode development --open --hot",
+    "build": "npx webpack --mode production",
+    "test": "npx jest"
   },
   "husky": {
     "hooks": {
@@ -27,6 +29,13 @@
   },
   "homepage": "https://github.com/VladKalachev/react-starter#readme",
   "devDependencies": {
-    "husky": "^4.2.5"
+    "husky": "^4.2.5",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.11.0"
+  },
+  "dependencies": {
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
   }
 }
