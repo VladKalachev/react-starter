@@ -6,6 +6,12 @@
   "scripts": {
     "test": "jest"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "",
+      "pre-push": ""
+    }
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/VladKalachev/react-starter.git"
@@ -19,5 +25,8 @@
   "bugs": {
     "url": "https://github.com/VladKalachev/react-starter/issues"
   },
-  "homepage": "https://github.com/VladKalachev/react-starter#readme"
+  "homepage": "https://github.com/VladKalachev/react-starter#readme",
+  "devDependencies": {
+    "husky": "^4.2.5"
+  }
 }
