@@ -1,0 +1,23 @@
+{
+  "name": "react-starter-project",
+  "version": "0.0.1",
+  "description": "The starting environment template for your react project",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VladKalachev/react-starter.git"
+  },
+  "keywords": [
+    "react",
+    "webpack"
+  ],
+  "author": "Kalachev Vlad",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/VladKalachev/react-starter/issues"
+  },
+  "homepage": "https://github.com/VladKalachev/react-starter#readme"
+}
