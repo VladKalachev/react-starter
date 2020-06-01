@@ -1,6 +1,6 @@
-const path = require("path");
+// const path = require('path')
 
 module.exports = {
-    entry: "./src/index.tsx",
-    devtool: "source-map",
+  entry: './src/index.tsx',
+  devtool: 'source-map'
 }

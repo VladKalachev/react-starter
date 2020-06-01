@@ -1,10 +1,10 @@
-import React from 'react';
-import { render } from 'react-dom';
+import React from 'react'
+import { render } from 'react-dom'
 
 const App = () => {
-    return (
-        <div>Starter React</div>
-    )
+  return (
+    <div>Starter React</div>
+  )
 }
 
-render(<App />, document.getElementById('root'));
+render(<App />, document.getElementById('root'))
