@@ -4,23 +4,29 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
+const isDev = process.env.NODE_ENV === 'development'
+const isProd = !isDev
+
 module.exports = {
   entry: './src/index.tsx',
-  devtool: 'source-map',
+  devtool: isDev ? 'source-map' : '',
   output: {
     path: path.join(__dirname, '/dist'),
     filename: '[name].[hash].js',
     publicPath: '/'
   },
   resolve: {
-    extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
+    extensions: ['.js', '.jsx', '.ts', '.tsx', '.json', '.png'],
     alias: {
       '@': path.resolve(__dirname, 'src')
     }
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './public/index.html'
+      template: './public/index.html',
+      minify: {
+        collapseWhitespace: isProd
+      }
     }),
     new CleanWebpackPlugin(),
     new CopyWebpackPlugin({
@@ -32,10 +38,11 @@ module.exports = {
       ]
     }),
     new MiniCssExtractPlugin({
-      filename: '[name].css'
+      filename: '[name].[hash].css'
     })
   ],
   devServer: {
+    port: 3000,
     historyApiFallback: true
   },
   optimization: {
@@ -61,7 +68,13 @@ module.exports = {
     rules: [
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader']
+        use: [{
+          loader: MiniCssExtractPlugin.loader,
+          options: {
+            hmr: isDev,
+            reloadAll: true
+          }
+        }, 'css-loader']
       },
       {
         test: /\.(js|ts)x?$/,
