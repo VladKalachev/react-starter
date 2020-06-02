@@ -1,32 +1,20 @@
+<img src="https://miro.medium.com/max/1050/1*Fxa6oJFh2lRD7EnAcZIcQg.png" title="react" alt="react">
 # React Starter
 
-# The starting environment template for your react project
+> The starting environment template for your react project
 
-## ✨ Dependency
-    react: "^16.13.1",
-    react-dom: "^16.13.1",
-    react-router-dom: "^5.1.2"
-    husky: "^4.2.5",
-    webpack: "^4.43.0",
-    webpack-cli: "^3.3.11",
-    webpack-dev-server: "^3.11.0"
+## Technologies
+- react
+- react-dom
+- webpack
+- jest
+- eslint
+- type script
 
-## 📦 Install
+## Contributing
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
-```bash
-npm install
-```
+Please make sure to update tests as appropriate.
 
-```bash
-yarn add
-```
-
-## 🔨 Start and Build
-
-```bash
-npm run dev
-```
-
-```bash
-npm run build
-```
+## License
+[ISC](https://choosealicense.com/licenses/isc/)
