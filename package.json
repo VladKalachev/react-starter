@@ -9,6 +9,7 @@
     "test": "npx jest",
     "lint": "npx eslint --ext .js,.jsx,.ts,.tsx --fix ./",
     "check": "npm run lint && npm test",
+    "analyzer": "webpack --json > analyzer.json && webpack-bundle-analyzer analyzer.json",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },

@@ -5,7 +5,6 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCssAssetWebpackPlugin = require('optimize-css-assets-webpack-plugin')
 const TerserWebpackPlugin = require('terser-webpack-plugin')
-// const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 
 const isDev = process.env.NODE_ENV === 'development'
 const isProd = !isDev
@@ -41,23 +40,8 @@ const optimization = () => {
   return config
 }
 
-const filename = ext => isDev ? `[name].${ext}` : `[name].[hash].${ext}`
-
-module.exports = {
-  entry: './src/index.tsx',
-  devtool: isDev ? 'source-map' : '',
-  output: {
-    path: path.join(__dirname, '/dist'),
-    filename: filename('js'),
-    publicPath: '/'
-  },
-  resolve: {
-    extensions: ['.js', '.jsx', '.ts', '.tsx', '.json', '.png'],
-    alias: {
-      '@': path.resolve(__dirname, 'src')
-    }
-  },
-  plugins: [
+const plugins = () => {
+  const base = [
     new HtmlWebpackPlugin({
       template: './public/index.html',
       minify: {
@@ -76,7 +60,28 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: filename('css')
     })
-  ],
+  ]
+
+  return base
+}
+
+const filename = ext => isDev ? `[name].${ext}` : `[name].[hash].${ext}`
+
+module.exports = {
+  entry: './src/index.tsx',
+  devtool: isDev ? 'source-map' : '',
+  output: {
+    path: path.join(__dirname, '/dist'),
+    filename: filename('js'),
+    publicPath: '/'
+  },
+  resolve: {
+    extensions: ['.js', '.jsx', '.ts', '.tsx', '.json', '.png'],
+    alias: {
+      '@': path.resolve(__dirname, 'src')
+    }
+  },
+  plugins: plugins(),
   devServer: {
     port: 3000,
     historyApiFallback: true
