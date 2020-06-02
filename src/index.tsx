@@ -1,7 +1,7 @@
 import React from 'react'
 import { render } from 'react-dom'
 import App from './App'
-import './promis'
+import './utils'
 import './style.css'
 import './style.scss'
 
