@@ -5,11 +5,15 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCssAssetWebpackPlugin = require('optimize-css-assets-webpack-plugin')
 const TerserWebpackPlugin = require('terser-webpack-plugin')
-
+const CleanTerminalPlugin = require('clean-terminal-webpack-plugin')
+const { name } = require('./package.json')
+const chalk = require('chalk')
+const ip = require('ip')
 const isDev = process.env.NODE_ENV === 'development'
 const isProd = !isDev
 
-// Optimization build dist
+const PORT = 4000
+
 const optimization = () => {
   const config = {
     splitChunks: {
@@ -42,6 +46,17 @@ const optimization = () => {
 
 const plugins = () => {
   const base = [
+    new CleanTerminalPlugin({
+      message: `
+        You can now view ${chalk.bold(name) || ''} in the browser.
+
+        ${chalk.black.bgBlue.bold('Local')}               http://localhost:${PORT}
+        ${chalk.black.bgBlue.bold('On Your Network')}:    http://${ip.address()}:${PORT}
+
+        Note that the development build is not optimized.
+        To create a production build, use ${chalk.blue('npm run build')}.
+      `
+    }),
     new HtmlWebpackPlugin({
       template: './public/index.html',
       minify: {
@@ -69,6 +84,11 @@ const filename = ext => isDev ? `[name].${ext}` : `[name].[hash].${ext}`
 
 module.exports = {
   entry: './src/index.tsx',
+  stats: {
+    all: false,
+    warnings: true,
+    errors: true
+  },
   devtool: isDev ? 'source-map' : '',
   output: {
     path: path.join(__dirname, '/dist'),
@@ -83,8 +103,9 @@ module.exports = {
   },
   plugins: plugins(),
   devServer: {
-    port: 3000,
-    historyApiFallback: true
+    port: PORT,
+    historyApiFallback: true,
+    overlay: true
   },
   optimization: optimization(),
   module: {
