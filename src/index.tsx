@@ -1,9 +1,10 @@
 import React from 'react'
 import { render } from 'react-dom'
+import './style.css'
 
 const App = () => {
   return (
-    <div>Starter React</div>
+    <div className='wrapper'>Starter React</div>
   )
 }
 
