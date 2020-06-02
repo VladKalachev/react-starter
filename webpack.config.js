@@ -67,6 +67,14 @@ module.exports = {
         test: /\.(js|ts)x?$/,
         loader: require.resolve('babel-loader'),
         exclude: /node_modules/
+      },
+      {
+        test: /\.(png|jpg|svg|gif)$/,
+        use: ['file-loader']
+      },
+      {
+        test: /\.(ttf|woff|woff2|eot)$/,
+        use: ['file-loader']
       }
     ]
   }
